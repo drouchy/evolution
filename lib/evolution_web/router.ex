@@ -18,6 +18,12 @@ defmodule EvolutionWeb.Router do
     pipe_through :browser
 
     live "/", PageLive, :index
+    get "/genetics", GeneticController, :index
+
+    live "/genetics/one_max", Genetics.OneMaxLive, :show
+    live "/genetics/n_queens", Genetics.NQueensLive, :show
+    live "/genetics/traveling_salesman", Genetics.TravelingSalesmanLive, :show
+    live "/genetics/knapsack", Genetics.KnapsackLive, :show
   end
 
   # Other scopes may use custom stacks.

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <%= csrf_meta_tag() %>
-    <%= live_title_tag assigns[:page_title] || "Evolution", suffix: " · Phoenix Framework" %>
+    <%= live_title_tag assigns[:page_title] || "Evolution" %>
     <link phx-track-static rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
     <script src="https://kit.fontawesome.com/3985e4407d.js" crossorigin="anonymous"></script>
     <script defer phx-track-static type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
@@ -142,7 +142,7 @@
       <header class="bg-white shadow">
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
           <h1 class="text-3xl font-bold leading-tight text-gray-900">
-            Dashboard
+            <%= assigns[:page_title] %>
           </h1>
         </div>
       </header>
