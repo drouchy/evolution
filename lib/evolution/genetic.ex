@@ -1,17 +1,6 @@
 defmodule Evolution.Genetic do
   alias Evolution.Genetic.Population
-
-  @defaults [
-    selection: &Evolution.Genetic.Toolbox.Selection.natural/2,
-    crossover: &Evolution.Genetic.Toolbox.Crossover.single_point/3,
-    mutation: &Evolution.Genetic.Toolbox.Mutation.scramble/2,
-    re_insertion: &Evolution.Genetic.Toolbox.ReInsertion.pure/4,
-    mutation_rate: 0.05,
-    selection_rate: 1.0,
-    survival_rate: 0.1,
-    reporter: Evolution.Genetic.Reporters.BlackHoleReporter,
-    random: Evolution.Utils.UniformRandom.new([])
-  ]
+  alias Evolution.Genetic.Settings
 
   def initialise(problem, settings \\ []) do
     population_size = Keyword.get(settings, :population_size, 10)
@@ -28,7 +17,7 @@ defmodule Evolution.Genetic do
   end
 
   def solve(problem, population, settings \\ []) do
-    all_settings = Keyword.merge(@defaults, settings)
+    all_settings = Keyword.merge(Settings.defaults(), settings)
     all_settings[:reporter].init(settings)
 
     run(problem, population, all_settings)
@@ -56,7 +45,7 @@ defmodule Evolution.Genetic do
           end)
 
         offspring = Enum.map(offspring, fn c -> %Evolution.Genetic.Chromosome{c | fitness: problem.fitness(c, settings)} end)
-        
+
         parents = Enum.flat_map(parents, &Tuple.to_list/1)
         chromosomes = settings[:re_insertion].(parents, offspring, leftovers, settings)
 
