@@ -49,7 +49,10 @@ defmodule Evolution.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
 
-      {:mix_test_watch, "~> 1.0", only: :test}
+      {:geocalc, "~> 0.8.3"},
+
+      {:mix_test_watch, "~> 1.0", only: :test},
+      {:stream_data, "~> 0.5", only: :test}
     ]
   end
 
