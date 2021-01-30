@@ -12,7 +12,7 @@ defmodule Evolution.Application do
       # Start the Telemetry supervisor
       EvolutionWeb.Telemetry,
       # Start the PubSub system
-      {Phoenix.PubSub, name: Evolution.PubSub},
+      {Phoenix.PubSub, name: :evolution},
       # Start the Endpoint (http/https)
       EvolutionWeb.Endpoint
       # Start a worker by calling: Evolution.Worker.start_link(arg)
