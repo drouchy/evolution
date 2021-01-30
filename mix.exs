@@ -11,7 +11,10 @@ defmodule Evolution.MixProject do
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
-      preferred_cli_env: ["test.watch": :test]
+      preferred_cli_env: [
+      "test.watch": :test,
+      w: :test
+      ]
     ]
   end
 
