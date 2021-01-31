@@ -98,8 +98,4 @@ defmodule Evolution.Genetic do
     |> Enum.filter(fn {_, a} -> arity == a end)
     |> Enum.map(fn {name, _} -> "#{name}" end)
   end
-
-  defp build_strategy(module, function, arity) do
-    Function.capture(module, String.to_atom(function), arity)
-  end
 end
