@@ -1,6 +1,13 @@
 defmodule Evolution.Genetic do
   alias Evolution.Genetic.Population
-  alias Evolution.Genetic.Settings
+
+  @defaults [
+    mutation_rate: 0.05,
+    selection_rate: 1.0,
+    survival_rate: 0.1,
+    reporter: Evolution.Genetic.Reporters.BlackHoleReporter,
+    random: Evolution.Utils.UniformRandom.new([])
+  ]
 
   def initialise(problem, settings \\ []) do
     population_size = Keyword.get(settings, :population_size, 10)
@@ -17,7 +24,10 @@ defmodule Evolution.Genetic do
   end
 
   def solve(problem, population, settings \\ []) do
-    all_settings = Keyword.merge(Settings.defaults(), settings)
+    all_settings = @defaults
+    |> Keyword.merge(problem.defaults())
+    |> Keyword.merge(settings)
+
     all_settings = Keyword.merge(all_settings,
       [
         selection:    Function.capture(Evolution.Genetic.Toolbox.Selection,   String.to_atom(all_settings[:selection]), 2),

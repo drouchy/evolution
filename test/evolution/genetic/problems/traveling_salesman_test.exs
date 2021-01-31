@@ -17,6 +17,12 @@ defmodule Evolution.Genetic.Problems.TravelingSalesmanTest do
     end
   end
 
+  describe "defaults/0" do
+    test "sets the default strategies" do
+      assert TravelingSalesman.defaults() == [selection: "natural", crossover: "order_one", mutation: "scramble", re_insertion: "pure"]
+    end
+  end
+
   @doc """
 
   to calculate the fitness [0, 1, 2], we calculate the sum of the distances between: [0, 1], [1, 2], [2, 0]

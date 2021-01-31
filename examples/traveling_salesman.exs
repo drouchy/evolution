@@ -63,10 +63,9 @@ population = Genetic.initialise(problem,
 )
 
 solution = Genetic.solve(problem, population,
-  crossover: "order_one",
   reporter: Evolution.Genetic.Reporters.LoggerReporter,
   cities: cities,
-  max_iteration: 10_000
+  max_iteration: 1_000
 )
 
 IO.inspect solution.champion

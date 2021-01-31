@@ -4,6 +4,9 @@ defmodule Evolution.Genetic.Problems.NQueens do
   alias Evolution.Genetic.Chromosome
 
   @impl true
+  def defaults(), do: [selection: "natural", crossover: "order_one", mutation: "scramble", re_insertion: "pure"]
+
+  @impl true
   def genotype(%{size: size}) do
     genes = (0..size-1) |> Enum.to_list() |> Enum.shuffle()
     %Chromosome{genes: genes, size: size, fitness: -1}

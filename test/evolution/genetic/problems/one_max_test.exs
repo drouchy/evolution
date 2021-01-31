@@ -16,6 +16,12 @@ defmodule Evolution.Genetic.Problems.OneMaxTest do
     end
   end
 
+  describe "defaults/0" do
+    test "sets the default strategies" do
+      assert OneMax.defaults() == [selection: "natural", crossover: "single_point", mutation: "scramble", re_insertion: "pure"]
+    end
+  end
+
   property "fitness/2 counts the number of 1 in the genes" do
     check all genes <- list_of(integer(0..1)) do
       chromosome = %Evolution.Genetic.Chromosome{genes: genes}
@@ -29,13 +35,13 @@ defmodule Evolution.Genetic.Problems.OneMaxTest do
   describe "terminate?/2" do
     test "terminates when the fittest chromosone has the fitness equal to the genes size" do
       chromosone = %Evolution.Genetic.Chromosome{genes: [1, 1, 1], fitness: 3, size: 3}
-       
+
       assert OneMax.terminate?(chromosone, 0, %{})
     end
 
     test "does not terminate when the fittest chromosone has the fitness below the genes size" do
       chromosone = %Evolution.Genetic.Chromosome{genes: [1, 1, 0], fitness: 2, size: 3}
-        
+
       refute OneMax.terminate?(chromosone, 0, %{})
     end
   end

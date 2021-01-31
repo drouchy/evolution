@@ -1,6 +1,8 @@
 defmodule Evolution.Genetic.Problem do
   alias Evolution.Genetic.Chromosome
 
+  @callback defaults() :: Keyword.t
+
   @callback genotype(Map.t) :: Chromosome.t
 
   @callback fitness(Chromosome.t, Map.t) :: number()
