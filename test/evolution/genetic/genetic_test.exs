@@ -46,9 +46,9 @@ defmodule Evolution.GeneticTest do
 
       population = Genetic.initialise(problem, population_size: population_size, problem_size: problem_size)
       solution   = Genetic.solve(problem, population,
-        selection: &Evolution.Genetic.Toolbox.Selection.natural/2,
-        crossover: &Evolution.Genetic.Toolbox.Crossover.order_one/3,
-        re_insertion: &Evolution.Genetic.Toolbox.ReInsertion.elitist/4)
+        crossover: "order_one",
+        re_insertion: "elitist"
+      )
 
       assert solution.generation               >= 0
       assert length(solution.champion.genes)  == problem_size
@@ -76,13 +76,35 @@ defmodule Evolution.GeneticTest do
 
       population = Genetic.initialise(problem, population_size: population_size, problem_size: problem_size, cities: cities)
       solution   = Genetic.solve(problem, population,
-        selection: &Evolution.Genetic.Toolbox.Selection.natural/2,
-        crossover: &Evolution.Genetic.Toolbox.Crossover.order_one/3,
-        re_insertion: &Evolution.Genetic.Toolbox.ReInsertion.elitist/4,
+        crossover: "order_one",
+        re_insertion: "elitist",
         cities: cities,
-        max_iteration: iteration)
+        max_iteration: iteration
+      )
 
       assert solution.champion.fitness <= 0
+    end
+  end
+
+  describe "available_strategies/1" do
+    test "extracts the selection strategies" do
+      assert Enum.member?(Genetic.available_strategies(:selection), "natural")
+    end
+
+    test "extracts the mutation strategies" do
+      assert Enum.member?(Genetic.available_strategies(:mutation), "scramble")
+    end
+
+    test "extracts the crossover strategies" do
+      assert Enum.member?(Genetic.available_strategies(:crossover), "single_point")
+    end
+
+    test "extracts the re_insertion strategies" do
+      assert Enum.member?(Genetic.available_strategies(:re_insertion), "elitist")
+    end
+
+    test "erros when that's not a valid step" do
+      assert Genetic.available_strategies(:something_else) == {:error, :not_valid}
     end
   end
 end

@@ -18,9 +18,27 @@ defmodule Evolution.Genetic do
 
   def solve(problem, population, settings \\ []) do
     all_settings = Keyword.merge(Settings.defaults(), settings)
+    all_settings = Keyword.merge(all_settings,
+      [
+        selection:    Function.capture(Evolution.Genetic.Toolbox.Selection,   String.to_atom(all_settings[:selection]), 2),
+        crossover:    Function.capture(Evolution.Genetic.Toolbox.Crossover,   String.to_atom(all_settings[:crossover]), 3),
+        mutation:     Function.capture(Evolution.Genetic.Toolbox.Mutation,    String.to_atom(all_settings[:mutation]), 2),
+        re_insertion: Function.capture(Evolution.Genetic.Toolbox.ReInsertion, String.to_atom(all_settings[:re_insertion]), 4),
+      ]
+    )
     all_settings[:reporter].init(settings)
 
     run(problem, population, all_settings)
+  end
+
+  def available_strategies(role) do
+    case role do
+      :selection     -> check_strategies(Evolution.Genetic.Toolbox.Selection, 2)
+      :crossover     -> check_strategies(Evolution.Genetic.Toolbox.Crossover, 3)
+      :mutation      -> check_strategies(Evolution.Genetic.Toolbox.Mutation, 2)
+      :re_insertion  -> check_strategies(Evolution.Genetic.Toolbox.ReInsertion, 4)
+      _              -> {:error, :not_valid}
+    end
   end
 
   defp run(problem, population, settings) do
@@ -70,8 +88,18 @@ defmodule Evolution.Genetic do
     end
   end
 
-  def report_event(population, event, settings) do
+  defp report_event(population, event, settings) do
     apply(settings[:reporter], event, [population, settings])
     population
+  end
+
+  defp check_strategies(module, arity) do
+    module.__info__(:functions)
+    |> Enum.filter(fn {_, a} -> arity == a end)
+    |> Enum.map(fn {name, _} -> "#{name}" end)
+  end
+
+  defp build_strategy(module, function, arity) do
+    Function.capture(module, String.to_atom(function), arity)
   end
 end
