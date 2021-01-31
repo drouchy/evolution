@@ -23,7 +23,7 @@ defmodule Evolution.Genetic.Problems.NQueensTest do
 
   describe "fitness/2" do
     @doc """
-      the genes [2, 0, 3, 1] as a perfect fitness of 4
+      the genes [2, 0, 3, 1] has a perfect fitness of 4
       ┌───┬───┬───┬───┐
       │   │ ◉ │   │   │
       ├───┼───┼───┼───┤
@@ -39,7 +39,7 @@ defmodule Evolution.Genetic.Problems.NQueensTest do
     end
 
     @doc """
-      the genes [2, 1, 3, 0] as 2 queens conflicting in diagonal
+      the genes [2, 1, 3, 0] has 2 queens conflicting in diagonal
       ┌───┬───┬───┬───┐
       │   │   │   │ ◉ │
       ├───┼───┼───┼───┤
@@ -75,6 +75,56 @@ defmodule Evolution.Genetic.Problems.NQueensTest do
     test "checks the fitness of the chromosome" do
       assert NQueens.terminate?(%Evolution.Genetic.Chromosome{genes: [], size: 4, fitness: 4}, nil, nil)
       refute NQueens.terminate?(%Evolution.Genetic.Chromosome{genes: [], size: 4, fitness: 3}, nil, nil)
+    end
+  end
+
+  describe "conflicts/2" do
+    @doc """
+      the genes [2, 0, 3, 1] does not have any conflict
+      ┌───┬───┬───┬───┐
+      │   │ ◉ │   │   │
+      ├───┼───┼───┼───┤
+      │   │   │   │ ◉ │
+      ├───┼───┼───┼───┤
+      │ ◉ │   │   │   │
+      ├───┼───┼───┼───┤
+      │   │   │ ◉ │   │
+      └───┴───┴───┴───┘
+    """
+    test "returns an empty list when no conflict is detected" do
+      assert Enum.empty? NQueens.conflicts(%{genes: [2, 0, 3, 1], size: 4})
+    end
+
+    @doc """
+      the genes [0, 1, 2, 3] are all conflicting
+      ┌───┬───┬───┬───┐
+      │ ◉ │   │   │   │
+      ├───┼───┼───┼───┤
+      │   │ ◉ │   │   │
+      ├───┼───┼───┼───┤
+      │   │   │ ◉ │   │
+      ├───┼───┼───┼───┤
+      │   │   │   │ ◉ │
+      └───┴───┴───┴───┘
+    """
+    test "returns all the genes when all are in conflict" do
+      assert NQueens.conflicts(%{genes: [0, 1, 2, 3], size: 4}) == [0, 1, 2, 3]
+    end
+
+    @doc """
+      the genes [2, 1, 3, 0] has 2 conflicts
+      ┌───┬───┬───┬───┐
+      │   │   │   │ ◉ │
+      ├───┼───┼───┼───┤
+      │   │ ◉ │   │   │
+      ├───┼───┼───┼───┤
+      │ ◉ │   │   │   │
+      ├───┼───┼───┼───┤
+      │   │   │ ◉ │   │
+      └───┴───┴───┴───┘
+    """
+    test "returns only the genes in conflict" do
+      assert NQueens.conflicts(%{genes: [2, 1, 3, 0], size: 4}) == [0, 1]
     end
   end
 end

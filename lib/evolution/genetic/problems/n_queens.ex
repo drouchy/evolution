@@ -14,22 +14,32 @@ defmodule Evolution.Genetic.Problems.NQueens do
 
   @impl true
   def fitness(chromosome, _settings) do
+    length(chromosome.genes) - length(analyse(chromosome))
+  end
+
+  def conflicts(chromosome) do
+    chromosome
+    |> analyse()
+    |> Enum.uniq()
+    |> Enum.sort()
+  end
+
+  defp analyse(chromosome) do
     max = chromosome.size - 1
-    diag_clashes =
-      for i <- 0..max, j <- 0..max do
-        if i != j do
-          dx = abs(i - j)
-          dy = abs(Enum.at(chromosome.genes, i) - Enum.at(chromosome.genes, j))
-          if dx == dy do
-            1
-          else
-            0
-          end
+    for i <- 0..max, j <- 0..max do
+      if i != j do
+        dx = abs(i - j)
+        dy = abs(Enum.at(chromosome.genes, i) - Enum.at(chromosome.genes, j))
+        if dx == dy do
+          j
         else
-          0
+          nil
         end
+      else
+        nil
       end
-    length(Enum.uniq(chromosome.genes)) - Enum.sum(diag_clashes)
+    end
+    |> Enum.reject(&is_nil/1)
   end
 
   @impl true
