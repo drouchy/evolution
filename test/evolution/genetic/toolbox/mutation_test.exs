@@ -10,7 +10,7 @@ defmodule Evolution.Genetic.Toolbox.MutationTest do
               genes <- list_of(integer(0..100), length: size) do
       initial = %Chromosome{size: size, genes: genes}
 
-      mutant = Mutation.scramble(initial)
+      mutant = Mutation.scramble(initial, [])
 
       assert mutant.genes            != initial.genes
       assert Enum.sort(mutant.genes) == Enum.sort(initial.genes)

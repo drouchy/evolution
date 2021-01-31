@@ -1,9 +1,9 @@
 defmodule Evolution.Genetic.Toolbox.Crossover do
   alias Evolution.Genetic.Chromosome
 
-  def single_point(parent_1, parent_2, settings \\ []) do
+  def single_point(parent_1, parent_2, settings) do
     random_function = random_function(settings)
-    
+
     cross_over_point = random_function.(parent_1.size)
 
     {head_1, tail_1} = Enum.split(parent_1.genes, cross_over_point)
@@ -14,10 +14,10 @@ defmodule Evolution.Genetic.Toolbox.Crossover do
       %Chromosome{genes: head_2 ++ tail_1, size: parent_1.size}
     ]
   end
-  
-  def order_one(parent_1, parent_2, settings \\ []) do    
+
+  def order_one(parent_1, parent_2, settings \\ []) do
     random_function = random_function(settings)
-    
+
     # Get random range
     {i1, i2} =
       [random_function.(parent_1.size), random_function.(parent_1.size)]
@@ -47,7 +47,7 @@ defmodule Evolution.Genetic.Toolbox.Crossover do
      }
     ]
   end
-  
+
   def random_function([random: function]), do: function
   def random_function(_), do: fn max -> :rand.uniform(max) end
 end
