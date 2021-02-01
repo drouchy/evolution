@@ -7,7 +7,7 @@ defmodule Evolution.Application do
     children = [
       Evolution.Repo,
       EvolutionWeb.Telemetry,
-      {Phoenix.PubSub, name: :evolution},
+      {Phoenix.PubSub, name: Evolution.PubSub},
       EvolutionWeb.Endpoint,
       {Task.Supervisor, name: Evolution.Genetic.TaskSupervisor}
     ]
