@@ -21,14 +21,10 @@
               </div>
               <div class="hidden md:block">
                 <div class="ml-10 flex items-baseline space-x-4">
-                  <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                  <a href="#" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"><i class="fas fa-tachometer-alt"> Dashboard</i></a>
-
-                  <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"><i class="fas fa-dna"> Genetic</i></a>
-
-                  <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"><i class="fas fa-feather"> Swarm</i></a>
-
-                  <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"><i class="fas fa-project-diagram"> Neural network</i></a>
+                  <%= render "_navigation_item.html", conn: @conn, title: "Dashboard", icon: "tachometer-alt", path: Routes.page_path(@conn, :index), size: :full %>
+                  <%= render "_navigation_item.html", conn: @conn, title: "Genetic", icon: "dna", path: Routes.genetic_path(@conn, :index), size: :full %>
+                  <%= render "_navigation_item.html", conn: @conn, title: "Swarm", icon: "feather", path: "#", size: :full %>
+                  <%= render "_navigation_item.html", conn: @conn, title: "Neural network", icon: "diagram", path: "#", size: :full %>
                 </div>
               </div>
             </div>
@@ -101,16 +97,14 @@
           Open: "block", closed: "hidden"
         -->
         <div class="hidden md:hidden">
+
           <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <a href="#" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"><i class="fas fa-tachometer-alt"></i></a>
-
-            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"><i class="fas fa-dna"></i></a>
-
-            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"><i class="fas fa-feather"></i></a>
-
-            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"><i class="fas fa-project-diagram"></i></a>
+           <%= render "_navigation_item.html", conn: @conn, title: "Dashboard", icon: "tachometer-alt", path: Routes.page_path(@conn, :index), size: :compact %>
+           <%= render "_navigation_item.html", conn: @conn, title: "Genetic", icon: "dna", path: Routes.genetic_path(@conn, :index), size: :compact %>
+           <%= render "_navigation_item.html", conn: @conn, title: "Swarm", icon: "feather", path: "#", size: :compact %>
+           <%= render "_navigation_item.html", conn: @conn, title: "Neural network", icon: "diagram", path: "#", size: :compact %>
           </div>
+
           <div class="pt-4 pb-3 border-t border-gray-700">
             <div class="flex items-center px-5">
               <div class="flex-shrink-0">

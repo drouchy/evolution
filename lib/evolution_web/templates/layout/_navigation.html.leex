@@ -1,0 +1,7 @@
+
+<div id="navigation-#{@size}" class="<%= navigation_menu_class(@size) %>">
+  <%= render "_navigation_item.html", conn: @conn, title: "Home", icon: "home", path: Routes.page_path(@conn, :index), size: @size %>
+  <%= render "_navigation_item.html", conn: @conn, title: "Builds", icon: "hammer", path: Routes.page_path(@conn, :index), size: @size %>
+  <%= render "_navigation_item.html", conn: @conn, title: "Repositories", icon: "project-diagram", path: Routes.page_path(@conn, :index), size: @size %>
+  <%= render "_navigation_item.html", conn: @conn, title: "Credentials", icon: "lock", path: Routes.page_path(@conn, :index), size: @size %>
+</div>
