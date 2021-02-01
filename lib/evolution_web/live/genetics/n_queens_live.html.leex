@@ -1,0 +1,17 @@
+<div class="mx-auto container max-w-2xl md:w-3/4 m-4">
+  <table id="board">
+    <%= for row <- 1..@settings.size do %>
+      <tr>
+        <%= for column <- 1..@settings.size do %>
+        <td align="center" class="<%= background_class(row, column) %>">
+          <%= if Enum.at(@genes, column - 1) == row - 1 do %>
+            <i class="fas fa-chess-queen fa-2x m-3 <%= if Enum.member?(@conflicts, column - 1), do: "text-red-600", else: "text-black" %>"></i>
+          <% else %>
+            &nbsp;
+          <% end %>
+        </td>
+      <% end %>
+      </tr>
+    <% end %>
+  </table>
+</div>
