@@ -1,19 +1,14 @@
-<div class="mx-auto container max-w-2xl md:w-3/4 m-4">
-  <table id="board" class="border-solid border-4 border-gray-300">
-    <%= for row <- 1..@settings.size do %>
-      <tr>
-        <%= for column <- 1..@settings.size do %>
-        <td align="center" class="<%= background_class(row, column) %>">
-          <%= if Enum.at(@genes, column - 1) == row - 1 do %>
-            <i class="fas fa-chess-queen fa-2x m-3 <%= if Enum.member?(@conflicts, column - 1), do: "text-red-600", else: "text-black" %>"></i>
-          <% else %>
-            &nbsp;
-          <% end %>
-        </td>
+<div class="rounded-t-xl overflow-visible bg-gradient-to-r from-amber-50 to-amber-100 p-4">
+  <div class="flex flex-row space-x-4" id="one-max">
+    <%= for i <- 1..(@settings.size-1) do %>
+      <div class="w-16 h-16 rounded-md <%= gene_class(@genes, i) %> text-white flex items-center justify-center text-2xl font-extrabold">
+        <%= Enum.at(@genes, i) %>
+      </div>
+      <%= if Integer.mod(i, 10) == 0 do %>
+        <div class="break"></div>
       <% end %>
-      </tr>
     <% end %>
-  </table>
+  </div>
 </div>
 
 <form phx-submit="solve" phx-change="new-settings">
@@ -22,7 +17,7 @@
       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
         Size
       </label>
-      <input class="rounded-lg overflow-hidden appearance-none bg-gray-400 h-3 w-128" type="range" min="5" max="30" step="1" value="<%= @settings.size %>" name="size"/>
+      <input class="rounded-lg overflow-hidden appearance-none bg-gray-400 h-3 w-128" type="range" min="5" max="300" step="1" value="<%= @settings.size %>" name="size"/>
       <p class="text-gray-600 text-xs italic"><%= @settings.size %></p>
     </div>
     <div class="w-full md:w-1/2 px-3">

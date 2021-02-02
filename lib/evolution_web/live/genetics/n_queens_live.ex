@@ -24,7 +24,7 @@ defmodule EvolutionWeb.Genetics.NQueensLive do
     chromosome = NQueens.genotype(%{size: size})
     conflicts  = NQueens.conflicts(chromosome)
 
-    {:noreply, assign(socket, page_title: "N-Queens", settings: %{size: size, population_size: population_size}, genes: chromosome.genes, conflicts: conflicts)}
+    {:noreply, assign(socket, settings: %{size: size, population_size: population_size}, genes: chromosome.genes, conflicts: conflicts)}
   end
 
   @impl true
