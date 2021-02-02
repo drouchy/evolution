@@ -1,5 +1,5 @@
 <div class="mx-auto container max-w-2xl md:w-3/4 m-4">
-  <table id="board">
+  <table id="board" class="border-solid border-4 border-gray-300">
     <%= for row <- 1..@settings.size do %>
       <tr>
         <%= for column <- 1..@settings.size do %>
@@ -15,3 +15,29 @@
     <% end %>
   </table>
 </div>
+
+<form phx-submit="solve" phx-change="new-settings">
+  <div class="absolute h-4 flex items-center justify-center w-4 rounded-full bg-white shadow border border-gray-300 -ml-2 top-0 cursor-pointer" unselectable="on" onselectstart="return false;" style="left: 58.5714%;">
+    <div class="relative -mt-2 w-1">
+        <div class="absolute z-40 opacity-100 bottom-100 mb-2 left-0 min-w-full" style="margin-left: -20.5px;">
+            <div class="relative shadow-md">
+                <div class="bg-black -mt-8 text-white truncate text-xs rounded py-1 px-4">92</div>
+                <svg class="absolute text-black w-full h-2 left-0 top-100" x="0px" y="0px" viewBox="0 0 255 255" xml:space="preserve">
+                    <polygon class="fill-current" points="0,0 127.5,127.5 255,0"></polygon>
+                </svg>
+            </div>
+        </div>
+    </div>
+</div>
+
+  Size: <input type="text" name="size" name="size" value="<%= @settings.size %>" /><br />
+  Population Size: <input type="text" name="population_size" value="<%= @settings.population_size %>" /><br />
+  <button class="rounded inline-flex items-center px-8 py-2 rounded-full border border-blue-600 text-blue-600 max-w-max shadow-sm hover:shadow-lg">
+    <span>Solve</span>&nbsp;<i class="fas fa-search"></i>
+  </button>
+</form>
+
+<%= if @statistics do %>
+  <h2>Generation: <%= @statistics.generation %></h2>
+  Best overall: <%= @statistics.fitness %>
+<% end %>
