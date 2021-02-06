@@ -1,0 +1,29 @@
+<form phx-submit="<%= if @statistics, do: "stop", else: "solve" %>" phx-change="new-settings">
+  <div class="flex flex-wrap -mx-3 mb-6">
+    <%= live_component @socket, EvolutionWeb.Genetic.Components.Settings, settings: @settings, min: 4, max: 20 %>
+  </div>
+  <div class="flex items-center justify-between">
+    <%= live_component @socket, EvolutionWeb.Genetic.Components.SolveButton, running: @statistics != nil %>
+  </div>
+  <div class="flex flex-wrap -mx-3 mb-6">
+    <%= live_component @socket, EvolutionWeb.Genetic.Components.Statistics, statistics: @statistics %>
+  </div>
+</form>
+
+<div class="mx-auto container max-w-2xl md:w-3/4 m-4">
+  <table id="board" class="border-solid border-4 border-gray-300">
+    <%= for row <- 1..@settings.size do %>
+      <tr>
+        <%= for column <- 1..@settings.size do %>
+        <td align="center" class="<%= background_class(row, column) %>">
+          <%= if Enum.at(@genes, column - 1) == row - 1 do %>
+            <i class="fas fa-chess-queen fa-2x m-3 <%= if Enum.member?(@conflicts, column - 1), do: "text-red-600", else: "text-black" %>"></i>
+          <% else %>
+            &nbsp;
+          <% end %>
+        </td>
+      <% end %>
+      </tr>
+    <% end %>
+  </table>
+</div>

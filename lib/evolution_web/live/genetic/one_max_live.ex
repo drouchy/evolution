@@ -1,4 +1,4 @@
-defmodule EvolutionWeb.Genetics.OneMaxLive do
+defmodule EvolutionWeb.Genetic.OneMaxLive do
   use EvolutionWeb, :live_view
 
   alias Evolution.Genetic

@@ -1,4 +1,4 @@
-defmodule EvolutionWeb.Genetics.TravelingSalesmanLive do
+defmodule EvolutionWeb.Genetic.TravelingSalesmanLive do
   use EvolutionWeb, :live_view
 
   @impl true

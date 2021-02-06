@@ -1,4 +1,4 @@
-defmodule EvolutionWeb.Genetics.KnapsackLive do
+defmodule EvolutionWeb.Genetic.KnapsackLive do
   use EvolutionWeb, :live_view
 
   @impl true

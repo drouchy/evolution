@@ -1,0 +1,22 @@
+<div class="flex">
+  <form phx-submit="<%= if @statistics, do: "stop", else: "solve" %>" phx-change="new-settings">
+    <div class="flex flex-wrap -mx-3 mb-6">
+      <%= live_component @socket, EvolutionWeb.Genetic.Components.Settings, settings: @settings, min: 10, max: 100 %>
+    </div>
+    <div class="flex items-center justify-between">
+      <%= live_component @socket, EvolutionWeb.Genetic.Components.SolveButton, running: @statistics != nil %>
+    </div>
+    <div class="flex flex-wrap -mx-3 mb-6">
+      <%= live_component @socket, EvolutionWeb.Genetic.Components.Statistics, statistics: @statistics %>
+    </div>
+  </form>
+</div>
+<div class="rounded-t-xl overflow-visible bg-gradient-to-r from-amber-50 to-amber-100 p-4">
+  <div class="flex flex-row space-x-4" id="one-max">
+    <%= for i <- 1..(@settings.size-1) do %>
+      <div class="w-16 h-16 m-2 rounded-md <%= gene_class(@genes, i) %> text-white flex items-center justify-center text-2xl font-extrabold">
+        <%= Enum.at(@genes, i) %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -22,10 +22,10 @@ defmodule EvolutionWeb.Router do
     scope "/genetics" do
       get "/", GeneticController, :index
 
-      live "/one_max", Genetics.OneMaxLive, :show
-      live "/n_queens", Genetics.NQueensLive, :show
-      live "/traveling_salesman", Genetics.TravelingSalesmanLive, :show
-      live "/knapsack", Genetics.KnapsackLive, :show
+      live "/one_max", Genetic.OneMaxLive, :show
+      live "/n_queens", Genetic.NQueensLive, :show
+      live "/traveling_salesman", Genetic.TravelingSalesmanLive, :show
+      live "/knapsack", Genetic.KnapsackLive, :show
     end
 
   end

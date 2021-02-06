@@ -1,4 +1,4 @@
-defmodule EvolutionWeb.Genetics.NQueensLive do
+defmodule EvolutionWeb.Genetic.NQueensLive do
   use EvolutionWeb, :live_view
 
   require Logger
@@ -35,11 +35,17 @@ defmodule EvolutionWeb.Genetics.NQueensLive do
     )
     Genetic.Reporters.PubSubReporter.subscribe(population)
 
-    Task.Supervisor.start_child(Evolution.Genetic.TaskSupervisor, fn ->
+    {:ok, pid} = Task.Supervisor.start_child(Evolution.Genetic.TaskSupervisor, fn ->
       Genetic.solve(NQueens, population, reporter: Genetic.Reporters.PubSubReporter)
     end)
 
-    {:noreply, assign(socket, population_id: population.id)}
+    {:noreply, assign(socket, population_id: population.id, pid: pid)}
+  end
+
+  @impl true
+  def handle_event("stop", _params, socket) do
+    Task.Supervisor.terminate_child(Evolution.Genetic.TaskSupervisor, socket.assigns.pid)
+    {:noreply, assign(socket, pid: nil, statistics: nil)}
   end
 
   @impl true
