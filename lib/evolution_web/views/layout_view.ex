@@ -19,7 +19,7 @@ defmodule EvolutionWeb.LayoutView do
   def navigation_menu_class(:compact), do: "px-2 pt-2 pb-3 space-y-1 sm:px-3"
 
   defp sub_path?("/", "/"), do: true
-  defp sub_path?(path, "/"),   do: false
+  defp sub_path?(_,   "/"), do: false
   defp sub_path?(request_path, path) do
     String.starts_with?(request_path, path)
   end

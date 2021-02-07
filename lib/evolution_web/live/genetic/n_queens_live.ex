@@ -65,7 +65,7 @@ defmodule EvolutionWeb.Genetic.NQueensLive do
   end
 
   @impl true
-  def handle_info({:solution_found, population = %{champion: champion}}, socket) do
+  def handle_info({:solution_found, %{champion: champion}}, socket) do
     Logger.info fn -> "Solution found #{socket.assigns.population_id}" end
 
     Genetic.Reporters.PubSubReporter.unsubscribe(%{id: socket.assigns.population_id})
