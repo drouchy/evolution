@@ -1,4 +1,4 @@
-defmodule Evolution.Genetic.Reporters.PubSubReporter do
+defmodule Evolution.Reporters.PubSubReporter do
   @behaviour Evolution.Genetic.Reporter
 
   require Logger

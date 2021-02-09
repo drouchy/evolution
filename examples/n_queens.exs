@@ -11,7 +11,7 @@ population = Genetic.initialise(problem,
 
 solution = Genetic.solve(problem, population,
   re_insertion: "pure",
-  reporter: Evolution.Genetic.Reporters.LoggerReporter
+  reporter: Evolution.Reporters.LoggerReporter
 )
 
 IO.inspect solution.champion

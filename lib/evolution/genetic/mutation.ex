@@ -1,4 +1,4 @@
-defmodule Evolution.Genetic.Toolbox.Mutation do
+defmodule Evolution.Genetic.Mutation do
   alias Evolution.Genetic.Chromosome
 
   def scramble(chromosome, _settings) do

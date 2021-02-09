@@ -1,7 +1,7 @@
-defmodule Evolution.Genetic.Toolbox.SelectionTest do
+defmodule Evolution.Genetic.SelectionTest do
   use ExUnit.Case, async: true
 
-  alias Evolution.Genetic.Toolbox.Selection
+  alias Evolution.Genetic.Selection
   alias Evolution.Genetic.Chromosome
 
   describe "natural/2" do

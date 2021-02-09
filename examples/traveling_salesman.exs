@@ -63,7 +63,7 @@ population = Genetic.initialise(problem,
 )
 
 solution = Genetic.solve(problem, population,
-  reporter: Evolution.Genetic.Reporters.LoggerReporter,
+  reporter: Evolution.Reporters.LoggerReporter,
   cities: cities,
   max_iteration: 1_000
 )

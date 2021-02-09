@@ -1,7 +1,7 @@
-defmodule Evolution.Genetic.Reporters.PubSubReporterTest do
+defmodule Evolution.Reporters.PubSubReporterTest do
   use ExUnit.Case, async: true
 
-  alias Evolution.Genetic.Reporters.PubSubReporter, as: Reporter
+  alias Evolution.Reporters.PubSubReporter, as: Reporter
 
   alias Evolution.Genetic.Population
 

@@ -1,8 +1,8 @@
-defmodule Evolution.Genetic.Toolbox.CrossoverTest do
+defmodule Evolution.Genetic.CrossoverTest do
   use ExUnit.Case, async: true
   use ExUnitProperties
 
-  alias Evolution.Genetic.Toolbox.Crossover
+  alias Evolution.Genetic.Crossover
   alias Evolution.Genetic.Chromosome
 
   alias Evolution.Problems.OneMax, as: Problem

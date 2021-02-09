@@ -5,7 +5,7 @@ defmodule Evolution.Genetic do
     mutation_rate: 0.05,
     selection_rate: 1.0,
     survival_rate: 0.1,
-    reporter: Evolution.Genetic.Reporters.BlackHoleReporter,
+    reporter: Evolution.Reporters.BlackHoleReporter,
     random: Evolution.Utils.UniformRandom.new([])
   ]
 
@@ -30,10 +30,10 @@ defmodule Evolution.Genetic do
 
     all_settings = Keyword.merge(all_settings,
       [
-        selection:    Function.capture(Evolution.Genetic.Toolbox.Selection,   String.to_atom(all_settings[:selection]), 2),
-        crossover:    Function.capture(Evolution.Genetic.Toolbox.Crossover,   String.to_atom(all_settings[:crossover]), 3),
-        mutation:     Function.capture(Evolution.Genetic.Toolbox.Mutation,    String.to_atom(all_settings[:mutation]), 2),
-        re_insertion: Function.capture(Evolution.Genetic.Toolbox.ReInsertion, String.to_atom(all_settings[:re_insertion]), 4),
+        selection:    Function.capture(Evolution.Genetic.Selection,   String.to_atom(all_settings[:selection]), 2),
+        crossover:    Function.capture(Evolution.Genetic.Crossover,   String.to_atom(all_settings[:crossover]), 3),
+        mutation:     Function.capture(Evolution.Genetic.Mutation,    String.to_atom(all_settings[:mutation]), 2),
+        re_insertion: Function.capture(Evolution.Genetic.ReInsertion, String.to_atom(all_settings[:re_insertion]), 4),
       ]
     )
     all_settings[:reporter].init(settings)
@@ -43,10 +43,10 @@ defmodule Evolution.Genetic do
 
   def available_strategies(role) do
     case role do
-      :selection     -> check_strategies(Evolution.Genetic.Toolbox.Selection, 2)
-      :crossover     -> check_strategies(Evolution.Genetic.Toolbox.Crossover, 3)
-      :mutation      -> check_strategies(Evolution.Genetic.Toolbox.Mutation, 2)
-      :re_insertion  -> check_strategies(Evolution.Genetic.Toolbox.ReInsertion, 4)
+      :selection     -> check_strategies(Evolution.Genetic.Selection, 2)
+      :crossover     -> check_strategies(Evolution.Genetic.Crossover, 3)
+      :mutation      -> check_strategies(Evolution.Genetic.Mutation, 2)
+      :re_insertion  -> check_strategies(Evolution.Genetic.ReInsertion, 4)
       _              -> {:error, :not_valid}
     end
   end

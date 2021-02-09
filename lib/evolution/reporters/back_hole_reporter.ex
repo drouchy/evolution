@@ -1,4 +1,4 @@
-defmodule Evolution.Genetic.Reporters.BlackHoleReporter do
+defmodule Evolution.Reporters.BlackHoleReporter do
   @behaviour Evolution.Genetic.Reporter
   
   @impl true

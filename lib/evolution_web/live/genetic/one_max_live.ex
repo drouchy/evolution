@@ -31,10 +31,10 @@ defmodule EvolutionWeb.Genetic.OneMaxLive do
       population_size: socket.assigns.settings.population_size,
       problem_size: socket.assigns.settings.size
     )
-    Genetic.Reporters.PubSubReporter.subscribe(population)
+    Evolution.Reporters.PubSubReporter.subscribe(population)
 
     Task.Supervisor.start_child(Evolution.Genetic.TaskSupervisor, fn ->
-      Genetic.solve(OneMax, population, reporter: Genetic.Reporters.PubSubReporter)
+      Genetic.solve(OneMax, population, reporter: Evolution.Reporters.PubSubReporter)
     end)
 
     {:noreply, assign(socket, population_id: population.id)}
@@ -60,7 +60,7 @@ defmodule EvolutionWeb.Genetic.OneMaxLive do
   def handle_info({:solution_found, %{champion: champion}}, socket) do
     Logger.info fn -> "Solution found #{socket.assigns.population_id}" end
 
-    Genetic.Reporters.PubSubReporter.unsubscribe(%{id: socket.assigns.population_id})
+    Evolution.Reporters.PubSubReporter.unsubscribe(%{id: socket.assigns.population_id})
     {:noreply, assign(socket, genes: champion.genes, statistics: nil)}
   end
 

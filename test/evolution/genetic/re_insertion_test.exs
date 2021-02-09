@@ -1,8 +1,8 @@
-defmodule Evolution.Genetic.Toolbox.ReInsertionTest do
+defmodule Evolution.Genetic.ReInsertionTest do
   use ExUnit.Case, async: true
   use ExUnitProperties
 
-  alias Evolution.Genetic.Toolbox.ReInsertion
+  alias Evolution.Genetic.ReInsertion
 
   @problems [
     Evolution.Problems.OneMax,

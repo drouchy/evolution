@@ -33,10 +33,10 @@ defmodule EvolutionWeb.Genetic.NQueensLive do
       population_size: socket.assigns.settings.population_size,
       problem_size: socket.assigns.settings.size
     )
-    Genetic.Reporters.PubSubReporter.subscribe(population)
+    Evolution.Reporters.PubSubReporter.subscribe(population)
 
     {:ok, pid} = Task.Supervisor.start_child(Evolution.Genetic.TaskSupervisor, fn ->
-      Genetic.solve(NQueens, population, reporter: Genetic.Reporters.PubSubReporter)
+      Genetic.solve(NQueens, population, reporter: Evolution.Reporters.PubSubReporter)
     end)
 
     {:noreply, assign(socket, population_id: population.id, pid: pid)}
@@ -68,7 +68,7 @@ defmodule EvolutionWeb.Genetic.NQueensLive do
   def handle_info({:solution_found, %{champion: champion}}, socket) do
     Logger.info fn -> "Solution found #{socket.assigns.population_id}" end
 
-    Genetic.Reporters.PubSubReporter.unsubscribe(%{id: socket.assigns.population_id})
+    Evolution.Reporters.PubSubReporter.unsubscribe(%{id: socket.assigns.population_id})
     {:noreply, assign(socket, genes: champion.genes, conflicts: [], statistics: nil)}
   end
 
