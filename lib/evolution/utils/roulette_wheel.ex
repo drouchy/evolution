@@ -8,8 +8,7 @@ defmodule Evolution.Utils.RouletteWheel do
     sum = fitness |> Enum.sum() |> round()
 
     r = random.(sum)
-
-    values
+    values ++ [sum]
     |> Enum.take_while(fn v -> v < r end)
     |> length()
   end
