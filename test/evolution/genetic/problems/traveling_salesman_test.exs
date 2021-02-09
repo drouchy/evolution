@@ -1,8 +1,8 @@
-defmodule Evolution.Problems.TravelingSalesmanTest do
+defmodule Evolution.Genetic.Problems.TravelingSalesmanTest do
   use ExUnit.Case, async: true
   use ExUnitProperties
 
-  alias Evolution.Problems.TravelingSalesman
+  alias Evolution.Genetic.Problems.TravelingSalesman
 
   alias Evolution.Genetic.Chromosome
 

@@ -1,4 +1,4 @@
-defmodule Evolution.Genetic.Selection do
+defmodule Evolution.Genetic.Toolbox.Selection do
   def natural(population, settings) do
     total = Enum.count(population)
     size = total * Keyword.get(settings, :ratio, 1.0) |> Kernel.trunc()

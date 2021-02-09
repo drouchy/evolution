@@ -4,7 +4,7 @@ defmodule EvolutionWeb.Genetic.NQueensLive do
   require Logger
 
   alias Evolution.Genetic
-  alias Evolution.Problems.NQueens
+  alias Evolution.Genetic.Problems.NQueens
 
   @default_size 10
 

@@ -1,4 +1,4 @@
-defmodule Evolution.Genetic.ReInsertion do
+defmodule Evolution.Genetic.Toolbox.ReInsertion do
   def pure(_parents, offspring, _leftovers, _settings) do
     offspring
   end

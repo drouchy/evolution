@@ -1,8 +1,8 @@
-defmodule Evolution.Genetic.MutationTest do
+defmodule Evolution.Genetic.Toolbox.MutationTest do
   use ExUnit.Case, async: true
   use ExUnitProperties
 
-  alias Evolution.Genetic.Mutation
+  alias Evolution.Genetic.Toolbox.Mutation
   alias Evolution.Genetic.Chromosome
 
   property "scramble/2 shuffle all the genes. So it keeps the same genes but move them around" do

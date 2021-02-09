@@ -1,4 +1,4 @@
-defmodule Evolution.Problems.TravelingSalesman do
+defmodule Evolution.Genetic.Problems.TravelingSalesman do
   @behaviour Evolution.Genetic.Problem
 
   alias Evolution.Genetic.Chromosome

@@ -1,4 +1,4 @@
-defmodule Evolution.Genetic.Crossover do
+defmodule Evolution.Genetic.Toolbox.Crossover do
   alias Evolution.Genetic.Chromosome
 
   def single_point(parent_1, parent_2, settings) do

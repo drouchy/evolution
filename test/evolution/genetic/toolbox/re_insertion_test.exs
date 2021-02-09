@@ -1,11 +1,11 @@
-defmodule Evolution.Genetic.ReInsertionTest do
+defmodule Evolution.Genetic.Toolbox.ReInsertionTest do
   use ExUnit.Case, async: true
   use ExUnitProperties
 
-  alias Evolution.Genetic.ReInsertion
+  alias Evolution.Genetic.Toolbox.ReInsertion
 
   @problems [
-    Evolution.Problems.OneMax,
+    Evolution.Genetic.Problems.OneMax,
   ]
   
   property "pure/4 only the offsprings are selected for re-insertion" do
