@@ -6,7 +6,7 @@ defmodule Evolution.Swarm.AntTest do
 
   describe "travel/1" do
     property "travels to each index" do
-      check all size <- integer(10..100),
+      check all size <- integer(2..10),
                 probabilities <- matrix_generator(size) do
         trip = Ant.traverse(probabilities)
 

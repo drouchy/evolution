@@ -45,7 +45,7 @@ defmodule Evolution.Utils.RouletteWheelTest do
       |> Enum.group_by(&Function.identity/1)
       |> Enum.reduce(%{}, fn {id, list} , acc -> Map.put(acc, id, length(list)) end)
 
-      assert_in_delta result[0], 100, 20
+      assert_in_delta result[0], 100, 25
       assert_in_delta result[1], 300, 60
       assert_in_delta result[2], 400, 80
       assert_in_delta result[3], 200, 40
