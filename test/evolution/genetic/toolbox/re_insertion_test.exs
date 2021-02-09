@@ -5,7 +5,7 @@ defmodule Evolution.Genetic.Toolbox.ReInsertionTest do
   alias Evolution.Genetic.Toolbox.ReInsertion
 
   @problems [
-    Evolution.Genetic.Problems.OneMax,
+    Evolution.Problems.OneMax,
   ]
   
   property "pure/4 only the offsprings are selected for re-insertion" do

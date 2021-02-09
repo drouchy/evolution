@@ -1,8 +1,8 @@
-defmodule Evolution.Genetic.Problems.OneMaxTest do
+defmodule Evolution.Problems.OneMaxTest do
   use ExUnit.Case, async: true
   use ExUnitProperties
 
-  alias Evolution.Genetic.Problems.OneMax
+  alias Evolution.Problems.OneMax
 
   property "genotype/1 generates a new chromosone with binarie genes of the desired size" do
     check all size <- integer(1..10_000) do

@@ -1,8 +1,8 @@
-defmodule Evolution.Genetic.Problems.NQueensTest do
+defmodule Evolution.Problems.NQueensTest do
   use ExUnit.Case, async: true
   use ExUnitProperties
 
-  alias Evolution.Genetic.Problems.NQueens
+  alias Evolution.Problems.NQueens
 
   property "genotype/1 generates a new chromosome with random positions for the queens" do
     check all size <- integer(3..10_000) do

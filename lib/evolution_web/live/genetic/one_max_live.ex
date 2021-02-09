@@ -2,7 +2,7 @@ defmodule EvolutionWeb.Genetic.OneMaxLive do
   use EvolutionWeb, :live_view
 
   alias Evolution.Genetic
-  alias Evolution.Genetic.Problems.OneMax
+  alias Evolution.Problems.OneMax
 
   require Logger
 

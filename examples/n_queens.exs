@@ -1,6 +1,6 @@
 alias Evolution.Genetic
 
-problem = Evolution.Genetic.Problems.NQueens
+problem = Evolution.Problems.NQueens
 
 population = Genetic.initialise(problem,
   population_size: 100,

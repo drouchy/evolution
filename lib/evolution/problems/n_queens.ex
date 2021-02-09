@@ -1,4 +1,4 @@
-defmodule Evolution.Genetic.Problems.NQueens do
+defmodule Evolution.Problems.NQueens do
   @behaviour Evolution.Genetic.Problem
 
   alias Evolution.Genetic.Chromosome

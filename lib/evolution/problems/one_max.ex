@@ -1,4 +1,4 @@
-defmodule Evolution.Genetic.Problems.OneMax do
+defmodule Evolution.Problems.OneMax do
   @behaviour Evolution.Genetic.Problem
 
   @impl true

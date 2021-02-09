@@ -4,7 +4,7 @@ defmodule Evolution.GeneticTest do
 
   @moduletag :full_test
 
-  @problems [Evolution.Genetic.Problems.OneMax]
+  @problems [Evolution.Problems.OneMax]
 
   alias Evolution.Genetic
 
@@ -27,7 +27,7 @@ defmodule Evolution.GeneticTest do
     check all population_size <- integer(20..50),
               problem_size    <- integer(5..15) do
 
-      problem    = Genetic.Problems.OneMax
+      problem    = Evolution.Problems.OneMax
       population = Genetic.initialise(problem, population_size: population_size, problem_size: problem_size)
 
       solution   = Genetic.solve(problem, population)
@@ -42,7 +42,7 @@ defmodule Evolution.GeneticTest do
     check all population_size <- integer(2..10),
               problem_size    <- integer(5..7) do
 
-      problem = Genetic.Problems.NQueens
+      problem = Evolution.Problems.NQueens
 
       population = Genetic.initialise(problem, population_size: population_size, problem_size: problem_size)
       solution   = Genetic.solve(problem, population,
@@ -72,7 +72,7 @@ defmodule Evolution.GeneticTest do
               problem_size    <- integer(5..7),
               iteration   <- integer(10..100) do
       cities = Enum.take_random(@cities, problem_size)
-      problem = Genetic.Problems.TravelingSalesman
+      problem = Evolution.Problems.TravelingSalesman
 
       population = Genetic.initialise(problem, population_size: population_size, problem_size: problem_size, cities: cities)
       solution   = Genetic.solve(problem, population,

@@ -5,7 +5,7 @@ defmodule Evolution.Genetic.Toolbox.CrossoverTest do
   alias Evolution.Genetic.Toolbox.Crossover
   alias Evolution.Genetic.Chromosome
 
-  alias Evolution.Genetic.Problems.OneMax, as: Problem
+  alias Evolution.Problems.OneMax, as: Problem
 
   describe "single_point/3" do
     test "crossing over swaps some part of the genes" do
@@ -45,8 +45,8 @@ defmodule Evolution.Genetic.Toolbox.CrossoverTest do
   describe "order_one" do
     property "all the chromosomes are valid" do
       check all size <- integer(10..100) do
-        parent_1 = Evolution.Genetic.Problems.NQueens.genotype(%{size: size})
-        parent_2 = Evolution.Genetic.Problems.NQueens.genotype(%{size: size})
+        parent_1 = Evolution.Problems.NQueens.genotype(%{size: size})
+        parent_2 = Evolution.Problems.NQueens.genotype(%{size: size})
         
         [child_1, child_2] = Crossover.order_one(parent_1, parent_2, [])
         

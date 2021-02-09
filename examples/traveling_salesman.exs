@@ -1,6 +1,6 @@
 alias Evolution.Genetic
 
-problem = Evolution.Genetic.Problems.TravelingSalesman
+problem = Evolution.Problems.TravelingSalesman
 
 cities = [
   %{lat: 35.6897, lng: 139.6922},
