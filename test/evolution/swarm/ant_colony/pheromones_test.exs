@@ -50,4 +50,14 @@ defmodule Evolution.Swarm.AntColony.PheromonesTest do
       assert pheromones == Matrex.new("0.0 0.825 0.55; 0.26 0.0 0.655; 1.625 0.45 0.0")
     end
   end
+
+  describe "evaporation_rate/2" do
+    test "reduces the values by the evaporation rate" do
+      initial = Matrex.new("0.0 0.2 0.3; 0.01 0.0 0.03; 1 0.2 0.0")
+
+      pheromones = Pheromones.evaporate(initial, 0.5)
+
+      assert pheromones == Matrex.new("0.0 0.1 0.15; 0.005 0.0 0.015; 0.5 0.1 0.0")
+    end
+  end
 end

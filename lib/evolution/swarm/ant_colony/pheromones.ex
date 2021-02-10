@@ -23,4 +23,5 @@ defmodule Evolution.Swarm.AntColony.Pheromones do
     Matrex.add(pheromones, additional)
   end
 
+  def evaporate(pheromones, evaporation_rate), do: Matrex.multiply(pheromones, 1 - evaporation_rate)
 end
