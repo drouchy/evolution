@@ -56,7 +56,8 @@ defmodule Evolution.MixProject do
       {:matrex, "~> 0.6.8"},
 
       {:mix_test_watch, "~> 1.0", only: :test},
-      {:stream_data, "~> 0.5", only: :test}
+      {:stream_data, "~> 0.5", only: :test},
+      {:exprof, "~> 0.2.0", only: :dev}
     ]
   end
 
