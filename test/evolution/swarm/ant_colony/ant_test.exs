@@ -1,8 +1,8 @@
-defmodule Evolution.Swarm.AntTest do
+defmodule Evolution.Swarm.AntColony.AntTest do
   use ExUnit.Case, async: true
   use ExUnitProperties
 
-  alias Evolution.Swarm.Ant
+  alias Evolution.Swarm.AntColony.Ant
 
   describe "travel/1" do
     property "travels to each index" do

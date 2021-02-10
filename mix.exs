@@ -53,6 +53,7 @@ defmodule Evolution.MixProject do
       {:plug_cowboy, "~> 2.0"},
 
       {:geocalc, "~> 0.8.3"},
+      {:matrex, "~> 0.6.8"},
 
       {:mix_test_watch, "~> 1.0", only: :test},
       {:stream_data, "~> 0.5", only: :test}
