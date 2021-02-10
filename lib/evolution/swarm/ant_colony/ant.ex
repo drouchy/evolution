@@ -1,4 +1,4 @@
-defmodule Evolution.Swarm.Ant do
+defmodule Evolution.Swarm.AntColony.Ant do
   alias Evolution.Utils.RouletteWheel
 
   def traverse(probabilities) do
@@ -8,8 +8,7 @@ defmodule Evolution.Swarm.Ant do
 
   defp iterate(current, [last], _), do: Enum.reverse([last | current])
   defp iterate(current = [head| _], rest, probabilities) do
-    row     = Enum.at(probabilities, head)
-    weights = Enum.map(rest, &(Enum.at(row, &1)))
+    weights = Enum.map(rest, fn col -> Matrex.at(probabilities, head + 1, col + 1) end)
     index   = RouletteWheel.spin(weights)
     next    = Enum.at(rest, index)
 
@@ -17,7 +16,9 @@ defmodule Evolution.Swarm.Ant do
   end
 
   defp initialise(probabilities) do
-    genes = 0..(length(probabilities) - 1) |> Enum.to_list()
+    {size, _} = Matrex.size(probabilities)
+
+    genes = 0..(size - 1) |> Enum.to_list()
     first = Enum.take_random(genes, 1)
     rest  = genes -- first
 
